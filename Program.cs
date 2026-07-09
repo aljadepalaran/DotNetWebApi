@@ -43,7 +43,7 @@ app.MapGet("/posts", async () =>
     Post? post = await postsClient.GetFromJsonAsync<Post>(
         "https://jsonplaceholder.typicode.com/posts/1"
     );
-    return (post != null) ? post.Body : output;
+    return (post != null) ? post.Body : "null";
 }).WithName("LoremIpsum");
 
 app.Run();
