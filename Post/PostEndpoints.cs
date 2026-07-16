@@ -13,13 +13,15 @@ public static class PostEndpoint
             .WithName("GetPostById");
     }
 
-    private static async Task<List<Post>> HandleGetAllPostsAsync(IPostRepository repo)
+    private static async Task<IResult> HandleGetAllPostsAsync(IPostRepository repo)
     {
-        return await repo.GetAllPostsAsync();
+        var allPosts = await repo.GetAllPostsAsync();
+        return Results.Ok(allPosts);
     }
 
-    private static async Task<Post> HandleGetPostAsync(int id, IPostRepository repo)
+    private static async Task<IResult> HandleGetPostAsync(int id, IPostRepository repo)
     {
-        return await repo.GetPostByIdAsync(id);
+        var post = await repo.GetPostByIdAsync(id);
+        return (post == null) ? Results.NotFound() : Results.Ok(post);
     }
 }
