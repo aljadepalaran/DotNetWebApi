@@ -16,4 +16,17 @@ public class PostRepository : IPostRepository
         output.Add(post);
         return output;
     }
+
+    public async Task<Post> GetPostByIdAsync(int id)
+    {
+        var post = new Post
+        {
+            Id = id,
+            UserId = 123,
+            Title = "GetPostByIdAsync",
+            Body = "This is a post fetched by ID"
+        };
+
+        return post;
+    }
 }
